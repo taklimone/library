@@ -22,7 +22,7 @@ public:
     }
 
     int size(int x) {
-        return par[find(x)];
+        return -par[find(x)];
     }
 
 private:
