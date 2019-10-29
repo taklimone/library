@@ -4,4 +4,4 @@ compiler:
   - gcc
 dist: Bionic
 script:
-  - ./test.sh
+  - bash test.sh
