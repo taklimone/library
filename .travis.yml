@@ -1,0 +1,7 @@
+language: cpp
+compiler:
+  - clang
+  - gcc
+dist: Bionic
+script:
+  - ./test.sh
