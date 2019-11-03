@@ -35,7 +35,7 @@ verify() {
     problem=$(get-id $file)
 
     if [ -z $problem ]; then
-        echo "WARNING: $file : PROBLEM not defined"
+        echo -e "\e[33;1mWARNING\e[m: $file : PROBLEM not defined"
         return 0
     fi
 
@@ -50,21 +50,33 @@ verify() {
 
     # run
     for casenum in `seq 1 $num`; do
-        diff <(./$dir/a.out < $dir/$casenum/in) <(cat $dir/$casenum/out)
+        diff <(./$dir/a.out < $dir/$casenum/in) <(cat $dir/$casenum/out) &> /dev/null
         if [ $? -ne 0 ]; then
-            echo "FAILED: $file"
-            exit 1
+            rm -rf $dir
+            echo -e "\e[31;1mFAILED\e[m: $file"
+            return 1
         fi
     done
     
     rm -rf $dir
-    echo "PASSED: $file"
+    echo -e "\e[32;1mPASSED\e[m: $file"
+    return 0
 }
 
 run() {
+    failed=0
     for file in test/*.cpp; do
         verify $file
+        if [ $? -ne 0 ]; then
+            failed=$((failed+1))
+        fi
     done
+
+    if [ $failed -eq 0 ]; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 run
