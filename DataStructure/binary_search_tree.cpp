@@ -89,7 +89,7 @@ private:
     }
 
     void transplant(node<T>* u, node<T>* v) {
-        if(u == nullptr) root = v;
+        if(u->parent == nullptr) root = v;
         else if(u == u->parent->left) u->parent->left = v;
         else u->parent->right = v;
         if(v != nullptr) v->parent = u->parent;
