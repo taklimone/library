@@ -3,7 +3,7 @@ using namespace std;
 
 class union_find {
 public:
-    union_find(int n): par(vector<int>(n, -1)) {}
+    union_find(int n): par(vector<int>(n, -1)), components(n) {}
 
     bool unite(int x, int y) {
         if((x = find(x)) == (y = find(y))) {
@@ -12,6 +12,7 @@ public:
             if(par[x] < par[y]) swap(x, y);
             par[y] += par[x];
             par[x] = y;
+            --components;
             return true;
         }
     }
@@ -25,6 +26,11 @@ public:
         return -par[find(x)];
     }
 
+    int cnt() {
+        return components;
+    }
+
 private:
     vector<int> par;
+    int components;
 };
