@@ -17,11 +17,11 @@ public:
         data = vector<T>(2 * N, idelem);
     }
 
-    segtree(const vector<T> &init, T idelem, Op &op = Op())
+    segtree(const vector<T> &init, T idelem, const Op &op = Op())
     : idelem(idelem), op(op) {
         for(N = 1; N < init.size(); N <<= 1);
-        data = vector<T>(2 * N);
-        for(int i = 0; i < N; ++i) data[i + N] = init[i];
+        data = vector<T>(2 * N, idelem);
+        for(int i = 0; i < init.size(); ++i) data[i + N] = init[i];
         for(int i = N - 1; i >= 0; --i) data[i] = op(data[2 * i], data[2 * i + 1]);
     }
 
