@@ -1,5 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A
-#include "../DataStructure/union-find.cpp"
+
+#include "data_structure/union_find.hpp"
 
 #include <iostream>
 #include <vector>

@@ -1,15 +1,16 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
+#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
 
-#include "../DataStructure/lazy_segtree.cpp"
+#include "data_structure/lazy_segtree.hpp"
 
 #include <iostream>
 
 int main() {
     int n, q;
     cin >> n >> q;
-    lazy_segtree<int, int> st(n, 0, -1001,
-    plus<long long>(), [](int, int b){ return b; },
-    [](int, int b){ return b; }, multiplies<int>());
+    auto init = vector<int>(n, 0);
+    lazy_segtree<int, int> st(init, (1LL << 31) - 1, 0,
+    [](int a,  int b){ return min(a, b); },
+    plus<int>(), plus<int>());
 
     while(q--) {
         int c, s, t; cin >> c >> s >> t;

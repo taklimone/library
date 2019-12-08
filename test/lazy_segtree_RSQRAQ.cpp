@@ -1,6 +1,6 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
+#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
 
-#include "../DataStructure/lazy_segtree.cpp"
+#include "data_structure/lazy_segtree.hpp"
 
 #include <iostream>
 
@@ -11,14 +11,12 @@ int main() {
     plus<long long>(), plus<long long>(), plus<long long>(), multiplies<long long>());
 
     while(q--) {
-        int c; cin >> c ;
+        int c, s, t; cin >> c >> s >> t;
         if(c == 0) {
-            int s, t; long long x;
-            cin >> s >> t >> x;
+            long long x; cin >> x;
             st.update(s - 1, t, x);
         } else {
-            int i; cin >> i;
-            cout << st[i - 1] << endl;
+            cout << st.get(s - 1, t) << endl;
         }
     }
 }

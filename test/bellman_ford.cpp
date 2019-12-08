@@ -1,6 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
 
-#include "../Graph/bellman-ford.cpp"
+#include "graph/bellman_ford.hpp"
 
 #include <iostream>
 #include <vector>

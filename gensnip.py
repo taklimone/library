@@ -2,12 +2,11 @@ import json
 from pathlib import Path
 
 snippet = {}
-for file in Path('.').glob('**/*.cpp'):
+for file in Path('.').glob('**/*.hpp'):
     if str(file).startswith('test'):
         continue
     name = file.stem
     snippet[name] = {}
-    snippet[name]['description'] = name
     snippet[name]['prefix'] = name
     with open(file, 'rt') as fin:
         snippet[name]['body'] = [

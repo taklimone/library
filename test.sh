@@ -1,14 +1,14 @@
 #!/bin/sh
 
 CXX=${CXX:-g++}
-CXXFLAGS=${CXXFLAGS:--std=c++1z -O2 -Wall}
+CXXFLAGS=${CXXFLAGS:--std=c++14 -I./include -O2 -Wall}
 
-get-url() {
+geturl() {
     file=$1
     cat $file | grep '^#define PROBLEM' | sed 's/^#define PROBLEM //'
 }
 
-get-id() {
+getid() {
     file=$1
     cat $file | grep '^#define PROBLEM' | sed 's/^#define PROBLEM http:\/\/judge.u-aizu.ac.jp\/onlinejudge\/description.jsp?id=//'
 }
@@ -31,8 +31,8 @@ download() {
 
 verify() {
     file=$1
-    url=$(get-url $file)
-    problem=$(get-id $file)
+    url=$(geturl $file)
+    problem=$(getid $file)
 
     if [ -z $problem ]; then
         echo -e "\e[33;1mWARNING\e[m: $file : PROBLEM not defined"

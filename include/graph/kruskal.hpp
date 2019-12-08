@@ -1,4 +1,4 @@
-#include "../DataStructure/union-find.cpp"
+#include "data_structure/union_find.hpp"
 
 #include <algorithm>
 #include <vector>

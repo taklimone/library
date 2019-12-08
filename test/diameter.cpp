@@ -1,6 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A
 
-#include "../Graph/diameter.cpp"
+#include "graph/diameter.hpp"
 
 #include <iostream>
 #include <vector>

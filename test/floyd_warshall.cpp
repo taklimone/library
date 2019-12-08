@@ -1,6 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
 
-#include "../Graph/floyd-warshall.cpp"
+#include "graph/floyd_warshall.hpp"
 
 #include <iostream>
 #include <vector>

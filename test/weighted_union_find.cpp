@@ -1,6 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
 
-#include "../DataStructure/weighted_union_find.cpp"
+#include "data_structure/weighted_union_find.hpp"
 
 #include <iostream>
 using namespace std;
