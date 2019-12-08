@@ -65,7 +65,7 @@ verify() {
 
 run() {
     failed=0
-    for file in test/*.cpp; do
+    for file in `find ./test -name *.cpp`; do
         verify $file
         if [ $? -ne 0 ]; then
             failed=$((failed+1))
