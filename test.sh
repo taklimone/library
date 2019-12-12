@@ -47,6 +47,11 @@ verify() {
 
     # compile
     $CXX $CXXFLAGS -o $dir/a.out $file
+    if [ $? -ne 0 ]; then
+        rm -rf $dir
+        echo -e "\e[35;1mBUILD FAILED\e[m: $file"
+        return 1
+    fi
 
     # run
     for casenum in `seq 1 $num`; do
