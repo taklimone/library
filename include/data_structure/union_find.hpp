@@ -1,15 +1,23 @@
-#include <vector>
-using namespace std;
+#ifndef UNION_FIND_HPP
+#define UNION_FIND_HPP
 
-class union_find {
+#include <vector>
+
+namespace tklib {
+
+class UnionFind {
+private:
+    std::vector<int> par;
+    int components;
+
 public:
-    union_find(int n): par(n, -1), components(n) {}
+    UnionFind(int n) : par(n, -1), components(n) {}
 
     bool unite(int x, int y) {
-        if((x = find(x)) == (y = find(y))) {
+        if ((x = find(x)) == (y = find(y))) {
             return false;
         } else {
-            if(par[x] < par[y]) swap(x, y);
+            if (par[x] < par[y]) std::swap(x, y);
             par[y] += par[x];
             par[x] = y;
             --components;
@@ -18,7 +26,7 @@ public:
     }
 
     int find(int x) {
-        if(par[x] < 0) return x;
+        if (par[x] < 0) return x;
         else return par[x] = find(par[x]);
     }
 
@@ -26,11 +34,11 @@ public:
         return -par[find(x)];
     }
 
-    int cnt() {
+    int count() {
         return components;
     }
-
-private:
-    vector<int> par;
-    int components;
 };
+
+} // namespace tklib
+
+#endif // UNION_FIND_HPP

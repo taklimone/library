@@ -10,11 +10,11 @@ int main() {
     int n, q;
     cin >> n >> q;
     
-    union_find uf(n);
+    tklib::UnionFind uf(n);
     while(q--) {
         int c, x, y;
         cin >> c >> x >> y;
-        if(c) cout << (uf.find(x) == uf.find(y) ? 1 : 0) << endl;
+        if(c) cout << (uf.find(x) == uf.find(y) ? 1 : 0) << '\n';
         else uf.unite(x, y);
     }
 }
