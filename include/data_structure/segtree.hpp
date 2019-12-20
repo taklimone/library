@@ -7,7 +7,7 @@
 namespace tklib {
 
 template <typename T, typename Op = std::plus<T>>
-class segtree {
+class Segtree {
 private:
     std::size_t N;
     std::vector<T> data;
@@ -15,14 +15,14 @@ private:
     const Op &op;
 
 public:
-    segtree(std::size_t n, T idelem, const Op &op = Op())
+    Segtree(std::size_t n, T idelem, const Op &op = Op())
     : N(1), idelem(idelem), op(op) {
         while(N < n) N <<= 1;
         data.assign(2 * N, idelem);
     }
 
     template <typename InputIt>
-    segtree(InputIt first, InputIt last, T idelem, const Op &op = Op())
+    Segtree(InputIt first, InputIt last, T idelem, const Op &op = Op())
     : N(1), idelem(idelem), op(op) {
         std::vector<T> buffer(first, last);
         while(N < buffer.size()) N <<= 1;

@@ -12,7 +12,7 @@ int main() {
     std::vector<int> gen(n, INF);
 
     auto op = [](const int a, const int b){ return min(a, b); };
-    tklib::segtree<int, decltype(op)> st(gen.begin(), gen.end(), INF, op);
+    tklib::Segtree<int, decltype(op)> st(gen.begin(), gen.end(), INF, op);
 
     while(q--) {
         int c, x, y; cin >> c >> x >> y;
