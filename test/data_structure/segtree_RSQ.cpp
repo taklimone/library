@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     int n, q; cin >> n >> q;
-    segtree<int> st(n, 0);
+    tklib::segtree<int> st(n, 0);
 
     while(q--) {
         int c, x, y; cin >> c >> x >> y;

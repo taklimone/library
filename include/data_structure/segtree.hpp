@@ -1,38 +1,44 @@
+#ifndef TKLIB_SEGTREE_HPP
+#define TKLIB_SEGTREE_HPP
+
 #include <vector>
 #include <functional>
-using namespace std;
 
-template <typename T, typename Op = plus<T>>
+namespace tklib {
+
+template <typename T, typename Op = std::plus<T>>
 class segtree {
 private:
-    size_t N;
-    vector<T> data;
+    std::size_t N;
+    std::vector<T> data;
     T idelem;
     const Op &op;
 
 public:
-    segtree(size_t n, T idelem, const Op &op = Op())
-    : idelem(idelem), op(op) {
-        for(N = 1; N < n; N <<= 1);
-        data = vector<T>(2 * N, idelem);
+    segtree(std::size_t n, T idelem, const Op &op = Op())
+    : N(1), idelem(idelem), op(op) {
+        while(N < n) N <<= 1;
+        data.assign(2 * N, idelem);
     }
 
-    segtree(const vector<T> &init, T idelem, const Op &op = Op())
-    : idelem(idelem), op(op) {
-        for(N = 1; N < init.size(); N <<= 1);
-        data = vector<T>(2 * N, idelem);
-        for(int i = 0; i < init.size(); ++i) data[i + N] = init[i];
+    template <typename InputIt>
+    segtree(InputIt first, InputIt last, T idelem, const Op &op = Op())
+    : N(1), idelem(idelem), op(op) {
+        std::vector<T> buffer(first, last);
+        while(N < buffer.size()) N <<= 1;
+        data.assign(2 * N, idelem);
+        std::swap_ranges(buffer.begin(), buffer.end(), data.begin() + N);
         for(int i = N - 1; i >= 0; --i) data[i] = op(data[2 * i], data[2 * i + 1]);
     }
 
-    void update(size_t pos, T val) {
+    void update(std::size_t pos, T val) {
         data[pos + N] = val;
         for(pos = (pos + N) / 2; pos > 0; pos >>= 1) {
             data[pos] = op(data[2 * pos], data[2 * pos + 1]);
         }
     }
 
-    T query(size_t left, size_t right) {
+    T query(std::size_t left, std::size_t right) {
         left += N;
         right += N;
 
@@ -46,7 +52,11 @@ public:
         return op(vl, vr);
     }
 
-    T operator[](size_t k) {
+    T operator[](std::size_t k) {
         return data[k + N];
     }
 };
+
+} // nasmespace tklib
+
+#endif // TKLIB_SEGTREE_HPP

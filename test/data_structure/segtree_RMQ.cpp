@@ -7,8 +7,12 @@ using namespace std;
 
 int main() {
     int n, q; cin >> n >> q;
-    auto op = [](const int &a, const int &b){ return min(a, b); };
-    segtree<int, decltype(op)> st(n, (1LL << 31) - 1, op);
+    
+    const int INF = (1LL << 31) - 1;
+    std::vector<int> gen(n, INF);
+
+    auto op = [](const int a, const int b){ return min(a, b); };
+    tklib::segtree<int, decltype(op)> st(gen.begin(), gen.end(), INF, op);
 
     while(q--) {
         int c, x, y; cin >> c >> x >> y;
