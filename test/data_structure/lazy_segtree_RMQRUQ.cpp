@@ -3,11 +3,12 @@
 #include "data_structure/lazy_segtree.hpp"
 
 #include <iostream>
+using namespace std;
 
 int main() {
     int n, q;
     cin >> n >> q;
-    lazy_segtree<int, int> st(n, (1LL << 31) - 1, -1,
+    tklib::LazySegtree<int, int> st(n, (1LL << 31) - 1, -1,
     [](int a, int b){ return min(a, b); },
     [](int, int b){ return b; },
     [](int, int b){ return b; }
@@ -19,7 +20,7 @@ int main() {
             int x; cin >> x;
             st.update(s, t + 1, x);
         } else {
-            cout << st.get(s, t + 1) << endl;
+            cout << st.get(s, t + 1) << '\n';
         }
     }
 }
