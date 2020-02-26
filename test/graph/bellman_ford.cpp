@@ -4,20 +4,20 @@
 
 #include <iostream>
 #include <vector>
+#include <tuple>
 using namespace std;
-
 
 int main() {
     int V, E, r;
     cin >> V >> E >> r;
-    vector<edge<int>> edgelist(E);
+    vector<tuple<int, int, int>> edgelist(E);
     for(int i=0; i<E; ++i) {
         int s, t, d;
         cin >> s >> t >> d;
         edgelist[i] = {s, t, d};
     }
 
-    auto dist = bellman_ford<int>(V, edgelist, r);
+    auto dist = tklib::bellmanFord(V, edgelist, r);
     if(dist.size() == 0) {
         cout << "NEGATIVE CYCLE" << endl;
     } else {
