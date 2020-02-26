@@ -1,10 +1,15 @@
+#ifndef TKLIB_WEIGHTED_UNION_FIND_HPP
+#define TKLIB_WEIGHTED_UNION_FIND_HPP
+
+#include <algorithm>
 #include <vector>
-using namespace std;
+
+namespace tklib {
 
 template <typename T>
-class weighted_union_find {
+class WeightedUnionFind {
 public:
-    weighted_union_find(size_t n)
+    WeightedUnionFind(std::size_t n)
     :par(n, -1), weight_diff(n, 0) {}
 
     // weight(y) - weight(x) = w
@@ -16,7 +21,7 @@ public:
             return false;
         } else {
             if(par[y] < par[x]) {
-                swap(x, y);
+                std::swap(x, y);
                 w = -w;
             }
             par[x] += par[y];
@@ -50,6 +55,10 @@ public:
     }
 
 private:
-    vector<int> par;
-    vector<T> weight_diff;
+    std::vector<int> par;
+    std::vector<T> weight_diff;
 };
+
+} // namespace tklib
+
+#endif // TKLIB_WEIGHTED_UNION_FIND_HPP

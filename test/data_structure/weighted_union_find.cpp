@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     int n, q; cin >> n >> q;
-    weighted_union_find<int> uf(n);
+    tklib::WeightedUnionFind<int> uf(n);
 
     while(q--){
         int k; cin >> k;
@@ -18,8 +18,8 @@ int main() {
         } else {
             int x, y;
             cin >> x >> y;
-            if(uf.find(x) != uf.find(y)) cout << '?' << endl;
-            else cout << uf.diff(x, y) << endl;
+            if(uf.find(x) != uf.find(y)) cout << "?\n";
+            else cout << uf.diff(x, y) << '\n';
         }
     }
 }
