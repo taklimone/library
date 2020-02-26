@@ -81,7 +81,7 @@ public:
         lazy.assign(2 * N, idE);
 
         std::swap_ranges(buffer.begin(), buffer.end(), data.begin() + N);
-        for(int i = N - 1; i >= 0; --i) data[i] = op(data[2 * i], data[2 * i + 1]);
+        for(int i = N - 1; i > 0; --i) data[i] = op(data[2 * i], data[2 * i + 1]);
     }
 
     void update(std::size_t left, std::size_t right, E x) {

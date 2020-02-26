@@ -28,7 +28,7 @@ public:
         while(N < buffer.size()) N <<= 1;
         data.assign(2 * N, idelem);
         std::swap_ranges(buffer.begin(), buffer.end(), data.begin() + N);
-        for(int i = N - 1; i >= 0; --i) data[i] = op(data[2 * i], data[2 * i + 1]);
+        for(int i = N - 1; i > 0; --i) data[i] = op(data[2 * i], data[2 * i + 1]);
     }
 
     void update(std::size_t pos, T val) {
