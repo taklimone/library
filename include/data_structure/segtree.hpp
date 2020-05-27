@@ -51,6 +51,6 @@ public:
     }
 };
 
-} // nasmespace tklib
+} // namespace tklib
 
 #endif // TKLIB_SEGTREE_HPP
