@@ -32,22 +32,16 @@ public:
     }
 
     void update(std::size_t pos, T val) {
-        data[pos + N] = val;
-        for(pos = (pos + N) / 2; pos > 0; pos >>= 1) {
-            data[pos] = op(data[2 * pos], data[2 * pos + 1]);
+        for(data[pos += N] = val; pos >>= 1; ) {
+            data[pos] = op(data[pos << 1], data[(pos << 1) + 1]);
         }
     }
 
     T query(std::size_t left, std::size_t right) {
-        left += N;
-        right += N;
-
         T vl = idelem, vr = idelem;
-        while(left < right) {
+        for(left += N, right += N; left < right; left >>= 1, right >>= 1) {
             if(left & 1) vl = op(vl, data[left++]);
-            if(right & 1) vr = op(data[right - 1], vr);
-            left >>= 1;
-            right >>= 1;
+            if(right & 1) vr = op(data[--right], vr);
         }
         return op(vl, vr);
     }
