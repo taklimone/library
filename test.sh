@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 CXX=${CXX:-g++}
 CXXFLAGS=${CXXFLAGS:--std=c++14 -I./include -O2 -Wall}
