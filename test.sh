@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CXX=${CXX:-g++}
-CXXFLAGS=${CXXFLAGS:--std=c++14 -I./include -O2 -Wall}
+CXXFLAGS=${CXXFLAGS:--std=c++17 -I./include -O2 -Wall}
 
 geturl() {
     file=$1
